@@ -25,7 +25,7 @@ const MyNavBar = () => {
                     <Nav.Link >Products</Nav.Link>
                 </LinkContainer>   
                  <LinkContainer to="/sort">      
-                    <Nav.Link >Sort</Nav.Link>
+                    <Nav.Link >Sort stuff</Nav.Link>
                 </LinkContainer>  
                 {/* <LinkContainer to="/buy">    
                     <Nav.Link >Buy</Nav.Link>    
