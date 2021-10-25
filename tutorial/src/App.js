@@ -5,7 +5,7 @@ import { BrowserRouter as Router, Route } from 'react-router-dom';
 // Components
 import MyNavBar from './components/navbar';
 import Home from './components/home';
-import ProductList from './components/listproducts';
+import ProductsPage from './pages/productsPage';
 // import Sort from './components/sort'
 
 function App() {
@@ -17,7 +17,7 @@ function App() {
               exact path="/" component={Home}>
             </Route>
             <Route
-              exact path="/products" component={ProductList}>
+              exact path="/products" component={ProductsPage}>
             </Route> 
             {/* <Route 
               exact path="/sort" component={Sort}>
