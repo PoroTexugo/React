@@ -1,4 +1,3 @@
-// Image: either the user loads its own image or the site displays a default:
 const Image = (props) => {    
     return (     
         <img
@@ -10,7 +9,6 @@ const Image = (props) => {
     );
 }
 
-// Product : has an image and a description 
 const Product = (props) => {        
     return(   
         <article className ="product">

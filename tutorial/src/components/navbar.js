@@ -2,7 +2,6 @@
 import React from 'react';
 import { Navbar, Nav } from 'react-bootstrap';
 import { LinkContainer } from 'react-router-bootstrap';
-import Button from 'react-bootstrap/Button'
 import Form from 'react-bootstrap/Form'
 import FormControl from 'react-bootstrap/FormControl'
 
@@ -23,22 +22,18 @@ const MyNavBar = () => {
                 </LinkContainer>    
                 <LinkContainer to="/products">                   
                     <Nav.Link >Products</Nav.Link>
-                </LinkContainer>   
-                 <LinkContainer to="/sort">      
-                    <Nav.Link >Sort stuff</Nav.Link>
-                </LinkContainer>  
-                {/* <LinkContainer to="/buy">    
-                    <Nav.Link >Buy</Nav.Link>    
-                </LinkContainer> 
-                <LinkContainer to="/support">               
-                    <Nav.Link>Support</Nav.Link>    
-                </LinkContainer>                                   */}
+                </LinkContainer>        
               </Nav>
               <Form className="d-flex">
-                  <FormControl ype="search" placeholder="" className="mr-2" aria-label="Search" />
-                  <Button variant="outline-success">Search</Button>
+                  <FormControl ype="search" placeholder="Search..." className="mr-2" aria-label="Search" />                
               </Form>
-                  <Nav.Link href="#Support">Login</Nav.Link>      
+              <LinkContainer to="/Login">                   
+                  <Nav.Link >Login</Nav.Link>
+               </LinkContainer>   
+               <LinkContainer to="/SignUp">                   
+                  <Nav.Link >SignUp</Nav.Link>
+               </LinkContainer>   
+                
             </Navbar.Collapse>
       </Navbar>                 
     );
