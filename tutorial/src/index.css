@@ -50,7 +50,6 @@ body {
   grid-area: productlist;
   background: #fff;
   width: 90w;
-  /* margin-top: 30px; */
   max-width: 1170px;
   display: grid;
   gap: 2rem;
@@ -88,34 +87,10 @@ body {
 }
 
 .product > h5 {
-  /* background: rgb(197, 214, 172);   */
   margin-top: 0.5rem;
   text-align: center;
 }
 .product > h6 {
-  /* background: rgb(181, 189, 185); */
   margin-top: 5px;
   text-align: center;
-}
-/* h5{
-  max-width: 400px;
-} */
-
-/* h2{
-  text-align: center;
-} */
-
-#buy {
-  margin: 0;
-  top: 50%;
-  left: 50%;
-  width: 70px;
-  background: rgb(207, 209, 110);
-  border-radius: 15px;
-}
-
-.form {
-  display: grid;
-  gap: 1rem;
-  padding: 1rem 3rem;
 }

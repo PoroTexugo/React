@@ -18,10 +18,8 @@ export default function useToken() {
   
   const saveToken = (userToken) => {
     sessionStorage.setItem('token', JSON.stringify(userToken));    
-    setToken(userToken.token); 
-    console.log('ran');
+    setToken(userToken.token);    
   };
-
 
   return {
     setToken: saveToken,

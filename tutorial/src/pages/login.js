@@ -1,73 +1,71 @@
 import React, { useState } from 'react';
-// import { Button, Card, CardBody, CardGroup, Col, Container, Form, Input, InputGroup, Row } from 'reactstrap';
 import PropTypes from 'prop-types';
-import '../components/login.css';
-
-const loginUser = async () => {  
-  
-  var myHeaders = new Headers();
-  myHeaders.append("content-Type", " application/json");
-  
-  var raw = "{\r\n  \"userName\": \"Poro\",\r\n  \"password\": \"123\"\r\n}";  
-  var requestOptions = {
-    method: 'POST',
-    headers: myHeaders,
-    body: raw,
-    redirect: 'follow'
-  };
-
-  // var requestOptions = {
-  //   method: 'POST',
-  //   headers: myHeaders,
-  //   body: JSON.stringify({
-  //        userName: userName,
-  //        password: password 
-  //   }),   
-  //   redirect: 'follow'
-  // };
-
-  
-  fetch("http://localhost:7772/api/UserAuthentication/Authenticate", requestOptions)
-    .then(response => response.text())
-    .then(result => console.log(result))
-    .catch(error => console.log('error', error));
-}
-
+import '../pages/login.css';
+// import { Button, Card, CardBody, CardGroup, Col, Container, Form, Input, InputGroup, Row } from 'reactstrap';
 
 const Login = (props) => {
-
-    const [userName, setUserName] = useState('');      
-    const [password, setPassword] = useState('');      
-     
-    const handleSubmit = async e => { 
-          
-        e.preventDefault();
-        const token = {token: 'Poro123'};
-        // const token = await loginUser({
-        //   username,
-        //   password
-        // });
-        props.setToken(token);          
+  
+  const [userName, setUserName] = useState('');      
+  const [password, setPassword] = useState('');      
+  
+  const loginUser = async () => {  
+    
+    var myHeaders = new Headers();
+    myHeaders.append("content-Type", " application/json");
+    
+    var raw = "{\r\n  \"userName\": \"" + userName + "\",\r\n  \"password\": \"" + password + "\"\r\n}";  
+    var requestOptions = {
+      method: 'POST',
+      headers: myHeaders,
+      body: raw,
+      redirect: 'follow'
+    };
+    
+    return await fetch("http://localhost:7772/api/UserAuthentication/Authenticate", requestOptions)         
+  }
+  
+  const handleSubmit = async e => { 
+    
+    e.preventDefault();
+    const response = await loginUser();
+    console.log(response);
+    if(response.ok){
+      const token = Buffer.from( userName+':'+password).toString('base64');
+      console.log(token);      
+      props.setToken({token:token});          
     }
+    else{
+      alert('Username or password is incorrect');
+    }     
+  }
+  return (
+    <div className="login-wrapper">
+      <h1>Please Log In</h1>
+      <form onSubmit={handleSubmit}>
+        <label>
+          <p>Username</p>
+          <input type="text" onChange={e => setUserName(e.target.value)} />
+        </label>
+        <br/>
+        <label>
+          <p>Password</p>
+          <input type="password" onChange={e => setPassword(e.target.value)} />
+        </label>
+        <div>
+          <button type="submit">Submit</button>
+        </div>
+      </form>
+  </div>
+  );
+}
+      
+export default Login;
 
-    return (
-        <div className="login-wrapper">
-        <h1>Please Log In</h1>
-        <form onSubmit={handleSubmit}>
-          <label>
-            <p>Username</p>
-            <input type="text" onChange={e => setUserName(e.target.value)} />
-          </label>
-          <br/>
-          <label>
-            <p>Password</p>
-            <input type="password" onChange={e => setPassword(e.target.value)} />
-          </label>
-          <div>
-            <button type="submit">Submit</button>
-          </div>
-        </form>
-      </div>
+Login.propTypes = {
+  setToken: PropTypes.func.isRequired
+}   
+
+
         // <div className="app flex-row align-items-center">
         //     <Container>
         //         <Row className="justify-content-center">
@@ -98,11 +96,3 @@ const Login = (props) => {
         //         </Row>
         //     </Container>
         // </div>
-    );
-}
-
-export default Login;
-
-Login.propTypes = {
-   setToken: PropTypes.func.isRequired
-}

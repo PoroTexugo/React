@@ -1,7 +1,4 @@
-// Dependencies
 import { useState, useEffect } from "react";
-
-// Components
 import ProductList from '../components/productList' 
 import Sidebar from '../components/sidebar'
 
@@ -13,30 +10,29 @@ const ProductsPage = () => {
     
         const result = await fetch('http://localhost:7772/api/Product/GetProductAndTypeList/' + category,
         {
-            method: 'get',     //mode: 'cors'     
+            method: 'get',        
             headers: {
                 'Accept': 'application/json',
-                'Content-Type':'application/json',              
-        },
+                'Content-Type':'application/json',   
+                'Access-Control-Expose-Headers': 'Content-Encoding',
+                // 'Content-Range': 'bytes : 0-9/*'         
+            },
         });
 
         const products =  JSON.parse(await result.json());  
         setProductList(products); 
   } 
   
-  useEffect(()=> {
+    useEffect(()=> {
     GetProductList();
-  },[])
+    },[])
 
     return(
         <>
             <div className="grid-container">
                 <div className="item2">
                     <Sidebar GetProductList={ GetProductList }/>
-                </div> 
-                {/* <div className="item3">
-                    <h1>Sort</h1>
-                </div>    */}
+                </div>               
                 <div className="item4">
                    <ProductList productList = { productList } />                   
                 </div>                         
